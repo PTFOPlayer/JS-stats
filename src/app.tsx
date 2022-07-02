@@ -1,29 +1,17 @@
 import { Text, Window, hot, View } from "@nodegui/react-nodegui";
 import React, {useState, useEffect} from "react";
-import { setInterval } from "timers";
-var osutils = require("os-utils");
-function Counter() {
+import Cpu from "./comp/cpu/Cpu"
 
-  let cpu = 0
-  
-  const [cpuUsage, setCpuUsage] = useState(cpu)
-  useEffect(() => {
-    setInterval(() => {
-        osutils.cpuUsage(function(v: number) {cpu = v * 100});
-        setCpuUsage(cpu)
-    },1000)
-  }, [])
-  return (
-    <Text>CPU usage: {cpuUsage}</Text>
-  )
-}
+const style = `
+  background-color: transparent;
+`
 
 class App extends React.Component {
   render() {
     return (
-      <Window>
+      <Window styleSheet={style}>
         <View>
-          <Counter/>
+          <Cpu/>
         </View>
       </Window>
     );
